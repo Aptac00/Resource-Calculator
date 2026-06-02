@@ -18,7 +18,15 @@ import zipfile
 import tempfile
 import webbrowser
 import shutil
-from translations import get_translator, set_language, _
+
+# Importar traducciones con mejor manejo de errores
+try:
+    from translations import get_translator, set_language, _
+except ImportError as e:
+    print(f"ERROR: No se pudo importar translations.py: {e}")
+    print(f"Ruta de búsqueda: {sys.path}")
+    print(f"Directorio actual: {os.getcwd()}")
+    raise
 
 # Si Tesseract no está en la ruta del sistema, pon aquí la ruta correcta:
 # TESSERACT_CMD = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
